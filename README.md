@@ -22,16 +22,20 @@ npm run build
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## Reference
+## Reference Links
 
 #### JSON SERVER
 
-(json data)[https://my-json-server.typicode.com/sageworksstudio/json-server/orders]
+[json data - https://my-json-server.typicode.com/sageworksstudio/json-server/orders](https://my-json-server.typicode.com/sageworksstudio/json-server/orders)
 
 #### Grid
 
-API
-https://docs.sencha.com/extwebcomponents/7.4.0/modern/Ext.grid.Grid.html
+[grid api -> Sencha](https://docs.sencha.com/extwebcomponents/7.4.0/modern/Ext.grid.Grid.html)
 
-EXAMPLE
-https://examples.sencha.com/ExtWebComponents/7.4.0/kitchensink/#EditableRow
+[grid example -> Sencha](https://examples.sencha.com/ExtWebComponents/7.4.0/kitchensink/#EditableRow)
+
+#### Button
+
+[button api -> Sencha](https://docs.sencha.com/extwebcomponents/7.4.0/modern/Ext.Button.html)
+
+[button example -> Sencha](https://examples.sencha.com/ExtWebComponents/7.4.0/kitchensink/#Button)
