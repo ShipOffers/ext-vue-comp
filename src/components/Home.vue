@@ -17,7 +17,8 @@
 
     <ext-grid
       title="The Grid Title"
-      shadow="true">
+      shadow="true"
+      data="orders">
 
       <ext-column
         text="ID"
