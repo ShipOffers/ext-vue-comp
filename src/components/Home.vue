@@ -34,7 +34,8 @@
       <div v-for="item in json">
         ID: {{ item.id }}, Full Name: {{ item.full_name }}, Order Number: {{ item.order_number }}, Status: {{ item.status }}
       </div>
-        <button @click="test">Vue Button (See console)</button>
+      <button @click="addItem">Add grid item</button>
+      <button @click="test">Vue Button (See console)</button>
     </div>
 
   </div>
@@ -77,10 +78,20 @@ export default {
     function test () {
       console.log('Test!')
     }
+    function addItem () {
+      const obj = {
+        "id": 5,
+        "full_name": "Willy Wonka",
+        "order_number": "123ABC",
+        "status": "Pending"
+      }
+      json.value.push(obj)
+    }
     onBeforeMount(() => {
       fetchOrders()
     })
     return {
+      addItem,
       fetchOrders,
       json,
       test,
