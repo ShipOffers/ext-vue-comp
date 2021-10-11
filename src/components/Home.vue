@@ -27,8 +27,8 @@
     <ext-grid
       title="The Grid Title"
       shadow="true"
-      columns="columns"
-      data="data"
+      :columns="columns"
+      :data="data"
       height="600">
     </ext-grid>
 
