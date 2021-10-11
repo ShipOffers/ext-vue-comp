@@ -27,43 +27,9 @@
     <ext-grid
       title="The Grid Title"
       shadow="true"
-      data="[
-      {
-        id: 1
-      },
-      {
-        id: 2
-      },
-      {
-        id: 3
-      },
-      {
-        id: 4
-      }
-    ]"
+      columns="columns"
+      data="data"
       height="600">
-
-      <ext-column
-        text="ID"
-        flex="1"
-        editable= "true"
-        dataIndex="id"></ext-column>
-      <ext-column
-        text="Full Name"
-        flex="1"
-        editable= "true"
-        dataIndex="full_name"></ext-column>
-      <ext-column
-        text="Order #"
-        flex="1"
-        editable= "true"
-        dataIndex="order_number"></ext-column>
-      <ext-column
-        text="Status"
-        flex="1"
-        editable= "true"
-        dataIndex="status"></ext-column>
-
     </ext-grid>
 
   </ext-container>
@@ -98,32 +64,17 @@ customElements.define('ext-button', MyVueElement)
 export default {
   name: 'Home',
   data: () => ({
-    orders: [
-      {
-        id: 1,
-        full_name: "Glen Danzig",
-        order_number: "674K9P",
-        status: "Shipped"
-      },
-      {
-        id: 2,
-        full_name: "Ru Paul",
-        order_number: "JD782E",
-        status: "Pending"
-      },
-      {
-        id: 3,
-        full_name: "Buckethead",
-        order_number: "F93DV8",
-        status: "Shipped"
-      },
-      {
-        id: 4,
-        full_name: "SpongeBob SquarePants",
-        order_number: "IE682X",
-        status: "On Hold"
-      }
-    ]
+    columns: [
+        {"text": "Name", "width": "250", "dataIndex": "name", "cell": {"style": {"text-align": "left"}}},
+        {"text": "Email Address", "flex": "1", "dataIndex": "email", "cell": {"style": {"text-align": "left"}}},
+        {"text": "Phone Number", "width": "250", "dataIndex": "phone", "cell": {"style": {"text-align": "left"}}}
+      ],
+    data: [
+        {"name": "Lisa", "email": "lisa@simpsons.com", "phone": "555-111-1224"},
+        {"name": "Bart", "email": "bart@simpsons.com", "phone": "555-222-1234"},
+        {"name": "Homer", "email": "homer@simpsons.com", "phone": "555-222-1244"},
+        {"name": "Marge", "email": "marge@simpsons.com", "phone": "555-222-1254"}
+      ]
   }),
   setup() {
     function test () {
