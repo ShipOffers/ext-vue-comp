@@ -13,12 +13,16 @@
 
 <!--
   https://my-json-server.typicode.com/sageworksstudio/json-server/orders
+
+  vue cookbook axios
+
 -->
 
     <ext-grid
       title="The Grid Title"
       shadow="true"
-      data="orders">
+      :data="orders"
+      height="600">
 
       <ext-column
         text="ID"
