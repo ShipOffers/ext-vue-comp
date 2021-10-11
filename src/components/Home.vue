@@ -2,7 +2,9 @@
 
   <ext-toolbar />
 
-
+  <div>
+    {{ orders }}
+  </div>
 
   <ext-container
     padding="10"
@@ -56,6 +58,7 @@
 
 </template>
 
+
 <script>
 
 import '@sencha/ext-web-components-modern/dist/ext-button.component'
@@ -73,6 +76,8 @@ const MyVueElement = defineCustomElement({
 })
 customElements.define('ext-button', MyVueElement)
 */
+
+
 export default {
   name: 'Home',
   data: () => ({
