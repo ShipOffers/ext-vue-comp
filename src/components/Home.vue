@@ -27,7 +27,20 @@
     <ext-grid
       title="The Grid Title"
       shadow="true"
-      :data="orders"
+      data="[
+      {
+        id: 1
+      },
+      {
+        id: 2
+      },
+      {
+        id: 3
+      },
+      {
+        id: 4
+      }
+    ]"
       height="600">
 
       <ext-column
