@@ -1,58 +1,56 @@
 <template>
 
-  <ext-toolbar />
-
   <div>
-    {{ orders }}
-  </div>
-
-  <ul v-for="item in orders">
-    <li>{{ item.id }}</li>
-  </ul>
-
-  <ext-container
-    padding="10"
-    layout="fit"
-    fitToParent="true"
-    height="100%"
-    width="100%">
-
-<!--
-  https://my-json-server.typicode.com/sageworksstudio/json-server/orders
-
-  vue cookbook axios
-
--->
 
     <ext-grid
-      title="The Grid Title"
+      title="EWC Grid"
       shadow="true"
+      editable="true"
+      height="300"
       columns='[
-        {"text": "Name", "width": "250", "dataIndex": "name", "cell": {"style": {"text-align": "left"}}},
-        {"text": "Email Address", "flex": "1", "dataIndex": "email", "cell": {"style": {"text-align": "left"}}},
-        {"text": "Phone Number", "width": "250", "dataIndex": "phone", "cell": {"style": {"text-align": "left"}}}
+        {
+          "text": "ID", "flex": "1", "dataIndex": "id"
+        },
+        {
+          "text": "Full Name", "flex": "1", "dataIndex": "full_name"
+        },
+        {
+          "text": "Order Number", "flex": "1", "dataIndex": "order_number"
+        },
+        {
+          "text": "Status", "flex": "1", "dataIndex": "status"
+        }
       ]'
-      data="data"
-      height="600">
+      :data="json">
     </ext-grid>
 
-  </ext-container>
-  
+    <ext-button
+      text="EWC Button (See console)"
+      :handle="test" />
 
-  <ext-button
-    text="EWC Button"
-    handle="'function sayHi(){console.log('hi')}'" />
+
+    <div style="padding: 10px; margin-bottom: 25px;">
+      <p>The below section is native Vue</p>
+      <div v-for="item in json">
+        ID: {{ item.id }}, Full Name: {{ item.full_name }}, Order Number: {{ item.order_number }}, Status: {{ item.status }}
+      </div>
+        <button @click="test">Vue Button (See console)</button>
+    </div>
+
+  </div>
+
 
 </template>
 
 
 <script>
-
 import '@sencha/ext-web-components-modern/dist/ext-button.component'
 import '@sencha/ext-web-components-modern/dist/ext-toolbar.component'
 import '@sencha/ext-web-components-modern/dist/ext-container.component'
 import '@sencha/ext-web-components-modern/dist/ext-grid.component'
 import '@sencha/ext-web-components-modern/dist/ext-column.component'
+import Orders from '@/services/ordersservice'
+import { onBeforeMount, ref } from 'vue'
 /*
 import { defineCustomElement } from 'vue'
 const MyVueElement = defineCustomElement({
@@ -67,27 +65,50 @@ customElements.define('ext-button', MyVueElement)
 
 export default {
   name: 'Home',
-  data: () => ({
-    columns: [
-        {"text": "Name", "width": "250", "dataIndex": "name", "cell": {"style": {"text-align": "left"}}},
-        {"text": "Email Address", "flex": "1", "dataIndex": "email", "cell": {"style": {"text-align": "left"}}},
-        {"text": "Phone Number", "width": "250", "dataIndex": "phone", "cell": {"style": {"text-align": "left"}}}
-      ],
-    data: [
-        {"name": "Lisa", "email": "lisa@simpsons.com", "phone": "555-111-1224"},
-        {"name": "Bart", "email": "bart@simpsons.com", "phone": "555-222-1234"},
-        {"name": "Homer", "email": "homer@simpsons.com", "phone": "555-222-1244"},
-        {"name": "Marge", "email": "marge@simpsons.com", "phone": "555-222-1254"}
-      ]
-  }),
   setup() {
-    function test () {
-      console.log('test')
+    const json = ref([])
+    function fetchOrders () {
+      return Orders.fetchOrders()
+        .then(res => {
+          console.log(res.data)
+          json.value = res.data
+        })
     }
+    function test () {
+      console.log('Test!')
+    }
+    onBeforeMount(() => {
+      fetchOrders()
+    })
     return {
+      fetchOrders,
+      json,
       test,
     }
   },
+
+  /*
+  data: function() {
+    return {
+      json: []
+    }
+  },
+  mounted () {
+    this.fetchOrders()
+  },
+  methods: {
+    test () {
+      console.log('test')
+    },
+    fetchOrders () {
+      return Orders.fetchOrders()
+        .then(res => {
+          console.log(res)
+          this.json = res.data
+        })
+    }
+  },
+  */
 }
 
 </script>
