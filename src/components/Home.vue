@@ -6,6 +6,10 @@
     {{ orders }}
   </div>
 
+  <ul v-for="item in orders">
+    <li>{{ item.id }}</li>
+  </ul>
+
   <ext-container
     padding="10"
     layout="fit"
