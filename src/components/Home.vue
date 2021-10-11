@@ -27,8 +27,12 @@
     <ext-grid
       title="The Grid Title"
       shadow="true"
-      :columns="columns"
-      :data="data"
+      columns='[
+        {"text": "Name", "width": "250", "dataIndex": "name", "cell": {"style": {"text-align": "left"}}},
+        {"text": "Email Address", "flex": "1", "dataIndex": "email", "cell": {"style": {"text-align": "left"}}},
+        {"text": "Phone Number", "width": "250", "dataIndex": "phone", "cell": {"style": {"text-align": "left"}}}
+      ]'
+      data="data"
       height="600">
     </ext-grid>
 

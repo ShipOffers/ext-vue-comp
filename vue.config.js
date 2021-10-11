@@ -34,15 +34,5 @@ module.exports = {
    * Treat any tag that starts with ext- as custom elements
    * to supress Vue's render warnings.
    */ 
-  chainWebpack: config => {
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .tap(options => ({
-        ...options,
-        compilerOptions: {
-          isCustomElement: tag => tag.startsWith('ext-')
-        }
-      }))
-  }
+
 }
