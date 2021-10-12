@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <!-- Native V3 code -->
+    <!-- Native Vue code -->
     <div style="padding: 10px; margin-bottom: 25px;">
       <p>The below section is native Vue</p>
       <div v-for="item in json">
