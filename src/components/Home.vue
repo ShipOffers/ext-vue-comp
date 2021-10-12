@@ -1,7 +1,20 @@
 <template>
-
   <div>
 
+    <!-- Native V3 code -->
+    <div style="padding: 10px; margin-bottom: 25px;">
+      <p>The below section is native Vue</p>
+      <div v-for="item in json">
+        ID: {{ item.id }}, Full Name: {{ item.full_name }}, Order Number: {{ item.order_number }}, Status: {{ item.status }}
+      </div>
+      <button @click="test">Vue Button (See console)</button>
+      <div style="margin-top: 50px;">
+        <button @click="addItem">Add object to data array</button>
+      </div>
+    </div>
+
+
+    <!-- Ext Web Components -->
     <ext-grid
       title="EWC Grid"
       shadow="true"
@@ -26,33 +39,21 @@
 
     <ext-button
       text="EWC Button (See console)"
-      :handle="test" />
-
-
-    <div style="padding: 10px; margin-bottom: 25px;">
-      <p>The below section is native Vue</p>
-      <div v-for="item in json">
-        ID: {{ item.id }}, Full Name: {{ item.full_name }}, Order Number: {{ item.order_number }}, Status: {{ item.status }}
-      </div>
-      <button @click="addItem">Add grid item</button>
-      <button @click="test">Vue Button (See console)</button>
-    </div>
+      .handle="test" />
 
   </div>
-
-
 </template>
 
 
 <script>
 import '@sencha/ext-web-components-modern/dist/ext-button.component'
-import '@sencha/ext-web-components-modern/dist/ext-toolbar.component'
-import '@sencha/ext-web-components-modern/dist/ext-container.component'
 import '@sencha/ext-web-components-modern/dist/ext-grid.component'
-import '@sencha/ext-web-components-modern/dist/ext-column.component'
 import Orders from '@/services/ordersservice'
 import { onBeforeMount, ref } from 'vue'
+
 /*
+ * https://v3.vuejs.org/guide/web-components.html
+ *
 import { defineCustomElement } from 'vue'
 const MyVueElement = defineCustomElement({
   props: {},
@@ -67,17 +68,32 @@ customElements.define('ext-button', MyVueElement)
 export default {
   name: 'Home',
   setup() {
+    /**
+     * This is where we store the JSON retrieved from the API
+     */
     const json = ref([])
+
+    /**
+     * The Axios call to fetch and store the data
+     */
     function fetchOrders () {
       return Orders.fetchOrders()
         .then(res => {
-          console.log(res.data)
+          console.log(res)
           json.value = res.data
         })
     }
+
+    /**
+     * This is just a 'test' function.
+     */
     function test () {
       console.log('Test!')
     }
+
+    /**
+     * This adds an object to the JSON array
+     */
     function addItem () {
       const obj = {
         "id": 5,
@@ -87,9 +103,17 @@ export default {
       }
       json.value.push(obj)
     }
+
+    /**
+     * The call to do the actual fetching on page load.
+     */
     onBeforeMount(() => {
       fetchOrders()
     })
+
+    /**
+     * Vue3 - make our data and functions available to the template.
+     */
     return {
       addItem,
       fetchOrders,
@@ -97,6 +121,11 @@ export default {
       test,
     }
   },
+
+
+  /**
+   * Vue2  - should still work in Vue3 as V2 is backwards compatible.
+   */
 
   /*
   data: function() {
@@ -117,7 +146,10 @@ export default {
           console.log(res)
           this.json = res.data
         })
-    }
+    },
+    test () {
+      console.log('Test!')
+    },
   },
   */
 }
