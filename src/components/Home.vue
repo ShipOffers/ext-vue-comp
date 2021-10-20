@@ -67,6 +67,10 @@ customElements.define('ext-button', MyVueElement)
 
 export default {
   name: 'Home',
+
+  /**
+   * Vue3 - make our data and functions available to the template.
+   */
   setup() {
     /**
      * This is where we store the JSON retrieved from the API
@@ -111,9 +115,6 @@ export default {
       fetchOrders()
     })
 
-    /**
-     * Vue3 - make our data and functions available to the template.
-     */
     return {
       addItem,
       fetchOrders,
@@ -121,6 +122,12 @@ export default {
       test,
     }
   },
+
+
+
+
+
+
 
 
   /**
