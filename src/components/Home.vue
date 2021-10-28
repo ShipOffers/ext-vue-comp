@@ -15,7 +15,6 @@
 
 
     <!-- Ext Web Components -->
-    {{ myStore }}
     <ext-grid
       title="EWC Grid"
       shadow="true"
