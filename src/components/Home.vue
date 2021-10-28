@@ -15,6 +15,7 @@
 
 
     <!-- Ext Web Components -->
+    {{ myStore }}
     <ext-grid
       title="EWC Grid"
       shadow="true"
@@ -34,12 +35,26 @@
           "text": "Status", "flex": "1", "dataIndex": "status"
         }
       ]'
-      :data="json">
+      
+      :store="myStore()">
+
     </ext-grid>
 
-    <ext-button
-      text="EWC Button (See console)"
-      .handle="test" />
+
+
+
+
+
+
+
+
+
+
+
+<!-- :data="json" -->
+<ext-button
+  text="EWC Button (See console)"
+  ontap="myTest" />
 
   </div>
 </template>
@@ -50,6 +65,7 @@ import '@sencha/ext-web-components-modern/dist/ext-button.component'
 import '@sencha/ext-web-components-modern/dist/ext-grid.component'
 import Orders from '@/services/ordersservice'
 import { onBeforeMount, ref } from 'vue'
+
 
 /*
  * https://v3.vuejs.org/guide/web-components.html
@@ -76,6 +92,24 @@ export default {
      * This is where we store the JSON retrieved from the API
      */
     const json = ref([])
+
+
+    function myStore () {
+      return  Ext.create('Ext.data.Store', {
+        // data: [{id: 123, name: 'sam'}, {id: 234, name: 'bill'}],
+        autoLoad: true,
+
+        proxy: {
+          type: 'memory',
+          // data: [{id: 123, name: 'sam'}, {id: 234, name: 'bill'}],
+          data: json.value,
+          reader: {
+              type: 'json'
+          }
+        }
+
+      })
+    }
 
     /**
      * The Axios call to fetch and store the data
@@ -120,6 +154,7 @@ export default {
       fetchOrders,
       json,
       test,
+      myStore,
     }
   },
 
