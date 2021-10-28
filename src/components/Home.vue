@@ -35,26 +35,16 @@
           "text": "Status", "flex": "1", "dataIndex": "status"
         }
       ]'
-      
       :store="myStore()">
-
     </ext-grid>
 
 
 
 
+    <ext-button
+      text="EWC Button (See console)"
+      ontap="myTest" />
 
-
-
-
-
-
-
-
-<!-- :data="json" -->
-<ext-button
-  text="EWC Button (See console)"
-  ontap="myTest" />
 
   </div>
 </template>
@@ -66,31 +56,10 @@ import '@sencha/ext-web-components-modern/dist/ext-grid.component'
 import Orders from '@/services/ordersservice'
 import { onBeforeMount, ref } from 'vue'
 
-
-/*
- * https://v3.vuejs.org/guide/web-components.html
- *
-import { defineCustomElement } from 'vue'
-const MyVueElement = defineCustomElement({
-  props: {},
-  emits: {},
-  template: `...`,
-  styles: [``] // inlined css
-})
-customElements.define('ext-button', MyVueElement)
-*/
-
-
 export default {
   name: 'Home',
-
-  /**
-   * Vue3 - make our data and functions available to the template.
-   */
   setup() {
-    /**
-     * This is where we store the JSON retrieved from the API
-     */
+    // This is where we store the JSON retrieved from the API
     const json = ref([])
 
 
@@ -98,7 +67,6 @@ export default {
       return  Ext.create('Ext.data.Store', {
         // data: [{id: 123, name: 'sam'}, {id: 234, name: 'bill'}],
         autoLoad: true,
-
         proxy: {
           type: 'memory',
           // data: [{id: 123, name: 'sam'}, {id: 234, name: 'bill'}],
@@ -111,9 +79,7 @@ export default {
       })
     }
 
-    /**
-     * The Axios call to fetch and store the data
-     */
+    // The Axios call to fetch and store the data
     function fetchOrders () {
       return Orders.fetchOrders()
         .then(res => {
@@ -122,16 +88,12 @@ export default {
         })
     }
 
-    /**
-     * This is just a 'test' function.
-     */
+    // This is just a 'test' function.
     function test () {
       console.log('Test!')
     }
 
-    /**
-     * This adds an object to the JSON array
-     */
+    // This adds an object to the JSON array
     function addItem () {
       const obj = {
         "id": 5,
@@ -142,9 +104,7 @@ export default {
       json.value.push(obj)
     }
 
-    /**
-     * The call to do the actual fetching on page load.
-     */
+    // The call to do the actual fetching on page load.
     onBeforeMount(() => {
       fetchOrders()
     })
@@ -157,43 +117,6 @@ export default {
       myStore,
     }
   },
-
-
-
-
-
-
-
-
-  /**
-   * Vue2  - should still work in Vue3 as V2 is backwards compatible.
-   */
-
-  /*
-  data: function() {
-    return {
-      json: []
-    }
-  },
-  mounted () {
-    this.fetchOrders()
-  },
-  methods: {
-    test () {
-      console.log('test')
-    },
-    fetchOrders () {
-      return Orders.fetchOrders()
-        .then(res => {
-          console.log(res)
-          this.json = res.data
-        })
-    },
-    test () {
-      console.log('Test!')
-    },
-  },
-  */
 }
 
 </script>
